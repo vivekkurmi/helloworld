@@ -44,7 +44,7 @@ class Manager extends Employee
 		super();
 		Scanner s=new Scanner(System.in);
 		int n;
-		System.out.print("No of people supervised:");
+		System.out.print("No of people supervised are:");
 		n=s.nextInt();
 		EIds=new int[n];
 		System.out.println("Enter the EID's of people supervised:");
