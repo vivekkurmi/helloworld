@@ -1,0 +1,115 @@
+import java.util.Scanner;
+class tym{
+void assign(int h,int m,int s)
+{
+	hour=h;
+	min=m;
+	sec=s;
+}
+void display()
+{
+	System.out.print(hour+":"+min+":"+sec);
+}
+tym add(tym t1,tym t2)
+{
+	tym sum=new tym();
+	sum.hour=t1.hour+t2.hour;
+	sum.min=t1.min+t2.min;
+	sum.sec=t1.sec+t2.sec;
+	if(sum.sec>60)
+	{
+		sum.sec%=60;
+		sum.min++;
+	}
+	if(sum.min>60)
+	{
+		sum.min%=60;
+		sum.hour++;
+	}
+	if(sum.hour>24)
+	{
+		sum.hour%=24;
+	}
+	return sum;
+}
+tym Sub(tym t1,tym t2)
+{
+	tym sub=new tym();
+	sub.hour=t1.hour-t2.hour;
+	sub.min=t1.min-t2.min;
+	sub.sec=t1.sec-t2.sec;
+	if(sub.sec<0)
+	{
+		sub.sec=60+sub.sec;
+		sub.min--;
+	}
+	if(sub.min<0)
+	{
+		sub.min=60+sub.sec;
+		sub.hour--;
+	}
+	if(sub.hour<0)
+	{
+		sub.hour=24+sub.hour;
+	}
+	return sub;
+}
+int compare(tym t1,tym t2)
+{
+	if(t1.hour==t2.hour && t1.min==t2.min && t1.sec==t2.sec)
+		return 0;
+	if(t1.hour>t2.hour)
+		return 1;
+	if (t1.hour==t2.hour && t1.min>t2.min)
+		return 1;
+	if (t1.hour==t2.hour && t1.min==t2.min && t1.sec>t2.sec)
+		return 1;
+	return 2;
+}
+private
+int hour;
+int min;
+int sec;
+}
+public class W2q2{
+	public static void main(String[] args)
+	{
+		Scanner scan=new Scanner(System.in);
+		int h,m,s;
+		System.out.print("Enter the time1 in 24hr format:");
+		h=scan.nextInt();
+		m=scan.nextInt();
+		s=scan.nextInt();
+		tym t1=new tym();
+		t1.assign(h,m,s);
+		System.out.print("Enter the time2 in 24hr format:");
+		h=scan.nextInt();
+		m=scan.nextInt();
+		s=scan.nextInt();
+		tym t2=new tym();
+		t2.assign(h,m,s);
+		System.out.print("Time1 is:");
+		t1.display();
+		System.out.println();
+		System.out.print("Time2 is:");
+		t2.display();
+		System.out.println();
+		System.out.print("The sum of Time is:");
+		tym sum=t1.add(t1,t2);
+		sum.display();
+		System.out.println();
+		System.out.print("The difference between time is:");
+		tym Sub=t1.Sub(t1,t2);
+		Sub.display();
+		System.out.println();
+		int cmp=t1.compare(t1,t2);
+		if(cmp==0)
+		System.out.println("Time is same");
+		else if(cmp==1)
+		System.out.println("Time1 is greater than Time2");
+		else
+		System.out.println("Time2 is greater than Time1");
+	}
+}
+			
+	

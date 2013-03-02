@@ -1,0 +1,128 @@
+import java.util.Scanner;
+class StudentNode
+{
+	private String name;
+	private int rollno;
+	private StudentNode next;
+	StudentNode()
+	{
+		name="";
+		rollno=0;
+		next=null;
+	}
+	StudentNode(String s,int r)
+	{
+		name=s;
+		rollno=r;
+		next=null;
+	}
+	void SetNext(StudentNode n)
+	{
+		next=n;
+	}
+	StudentNode GetNext()
+	{
+		return next;
+	}
+	String GetData()
+	{
+		String data="";
+		data="\nName="+name+"\nRoll no.="+rollno+"\n";
+		return data;
+	}
+}
+class StudentLL
+{
+	private StudentNode head;
+	private int NosItem;
+	StudentLL()
+	{
+		head=null;
+		NosItem=0;
+	}
+	int GetNosItems()
+	{
+		return NosItem;
+	}
+	boolean IsEmpty()
+	{
+		if(head==null)
+		return true;
+		else
+		return false;
+	}
+	void AddAtLast(String s,int r)
+	{
+		StudentNode n=new StudentNode(s,r);
+		if (head==null)
+		{
+			head=n;
+			NosItem++;
+		}
+		else		
+		{
+			StudentNode cur=head;
+			while(cur.GetNext()!=null)
+			{	
+				cur=cur.GetNext();
+			}
+			cur.SetNext(n);
+			NosItem++;
+		}
+	}
+	void DeleteAtHead()
+	{
+		if(IsEmpty()==true)
+		{
+			System.out.println("List is empty");
+		}
+		else
+		{
+			System.out.println("The deleted Record is "+head.GetData());
+			head=head.GetNext();
+			NosItem--;
+		}
+	}
+	public String ToString()
+	{	
+		String List="";
+		StudentNode cur=head;
+		for(int i=0;i<NosItem;i++)
+		{
+			List+=cur.GetData()+" ";
+			cur=cur.GetNext();
+		}
+		return List;
+	}
+}
+public class W3q4
+{
+	public static void main(String args[])
+	{
+		StudentLL LL=new StudentLL();
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Menu:\n1.Add at last\n2.delete at head\n3.display the list\n4.exit");
+		int choice,r;
+		String str;
+		do
+		{
+			System.out.print("Enter your choice:");
+			choice=scan.nextInt();
+			switch(choice)
+			{
+				case 1:	System.out.println("Enter the record to be pushed:");
+					System.out.print("Name=");
+					str=scan.next();
+					System.out.print("Roll no.=");
+					r=scan.nextInt();
+					LL.AddAtLast(str,r);
+					break;
+				case 2: LL.DeleteAtHead();
+					break;
+				case 3:	System.out.println("The linked list is:\n"+LL.ToString());
+					break;
+				case 4:	break;
+			}
+		}while(choice!=4);
+	}
+}
